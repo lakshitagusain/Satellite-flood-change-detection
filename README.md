@@ -12,7 +12,7 @@ Rapidly mapping inundated zones is a foundational step in post-disaster infrastr
 4. **Area Estimation & Overlay:** Quantifies the newly flooded area (`+2.08%` of the frame) and renders a visual change-detection overlay.
 
 ## Output
-![Gandak River Flood Change Detection](gandak_flood_change_detection.jpg)
+![Gandak River Flood Change Detection](gandak_flood_change_detection.png)
 
 *Data Source: NASA Earth Observatory (MODIS Bands 7-2-1), September 20 & September 29, 2026.*
 ## Challenges & Iterative Refinements
