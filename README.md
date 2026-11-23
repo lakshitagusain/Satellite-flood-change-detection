@@ -19,10 +19,22 @@ Rapidly mapping inundated zones is a foundational step in post-disaster infrastr
 - **Spectral Ambiguity in HSV Thresholding:** Initial single-frame HSV blue-range thresholding under-detected the flooded Gandak River (which appears dark teal/blue-green in MODIS 7-2-1 imagery) while triggering false positives on light-blue cloud edges.
 - **Cloud Interference & Pivot to Differential Change Detection:** Rather than relying on static color bounds, the pipeline was refactored to detect sharp pre-to-post drops in the Green (Near-Infrared) channel—directly capturing the transition from bright green vegetation to water—while applying a Red-channel ceiling to suppress bright cloud cover.
 
-## Limitations Observed & Next Steps
-- **Spatial Resolution:** Moderate-resolution MODIS imagery captures regional floodplain expansion well, but cannot resolve narrow mountain roads or street-level blockages.
-- **Cloud Occlusion:** While optical thresholding filters out visible clouds, dense monsoon cloud cover still obscures underlying terrain.
-- **Future Direction:** Extending this baseline to deep semantic segmentation (U-Net / DeepLabV3+ in PyTorch), incorporating cloud-penetrating SAR radar, and exploring cross-regional transfer learning for mountainous disaster corridors.
+## Limitations
+
+While this prototype demonstrates automated floodwater extraction and expansion quantification on wide river corridors, it highlights several real-world constraints of basic optical remote sensing:
+
+* **Cloud-Cover Dependency:** MODIS optical/false-color imagery requires clear skies, making it unreliable during active monsoon or typhoon storms when rapid disaster assessment is most critical.
+* **Coarse Spatial Resolution (~250m):** Effective for broad floodplains like the Gandak River, but too coarse to resolve narrow infrastructure (such as 4–8m mountain roads) or localized debris blockages.
+* **Fixed Color-Space Thresholding:** Static HSV masking is sensitive to variations in water turbidity, sediment load, and atmospheric conditions across different capture dates.
+
+## Next Steps
+
+To move from broad floodplain tracking toward actionable post-disaster infrastructure screening, future iterations aim to explore:
+
+* **All-Weather SAR Integration:** Incorporating Synthetic Aperture Radar (e.g., Sentinel-1 / ALOS) alongside higher-resolution optical imagery (Sentinel-2) to enable rapid, cloud-penetrating change detection.
+* **GIS Road-Network Overlay:** Integrating vector road data (OpenStreetMap / GSI) to transition from pixel-level water expansion metrics to segment-level road blockage screening.
+* **Terrain-Aware Validation:** Accounting for topographic distortion in steep mountainous corridors and benchmarking rapid satellite outputs against high-resolution aerial or 3D terrain datasets.
+
 
 ## Tech Stack
 - Python, OpenCV, NumPy, Matplotlib (Google Colab)
